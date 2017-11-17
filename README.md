@@ -18,7 +18,6 @@ public Iterator<Object[]> provider() throws Exception {
     String line = "";
     int cnt = 0;
 
-    //this loop is pseudo code
     BufferedReader br = new BufferedReader(new FileReader("./src/test/resources/data/data.csv"));
     while ((line = br.readLine()) != null) {
         // use comma as separator
