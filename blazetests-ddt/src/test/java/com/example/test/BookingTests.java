@@ -1,14 +1,16 @@
-package com.example;
+package com.example.test;
 
+import com.example.util.SpreadsheetData;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -69,7 +71,7 @@ public class BookingTests extends BaseTest {
         Assert.assertTrue(driver.getPageSource().contains("Flight Number: 234"));
     }
 
-    @Test(dataProvider = "options")
+    @Test(dataProvider = "excelOptions")
     public void shouldDisplayFlightOptionsDDT(String from, String to, String options) {
 
         driver = getDriver();
@@ -112,6 +114,12 @@ public class BookingTests extends BaseTest {
             cnt++;
         }
         return testCases.iterator();
+    }
+
+    @DataProvider(name = "excelOptions")
+    public Object[][] getExcelData() throws InvalidFormatException, IOException {
+        SpreadsheetData spreadsheetData = new SpreadsheetData();
+        return spreadsheetData.getCellData("./src/test/resources/data/data.xls");
     }
 }
 

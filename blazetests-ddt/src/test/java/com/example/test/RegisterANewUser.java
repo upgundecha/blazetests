@@ -1,4 +1,4 @@
-package com.example;
+package com.example.test;
 
 import com.github.javafaker.Faker;
 import org.junit.Assert;

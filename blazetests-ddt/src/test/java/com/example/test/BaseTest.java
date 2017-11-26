@@ -1,4 +1,4 @@
-package com.example;
+package com.example.test;
 
 import com.vimalselvam.testng.listener.ExtentTestNgFormatter;
 import org.apache.commons.io.FileUtils;
@@ -20,7 +20,7 @@ public class BaseTest {
     @BeforeMethod
     public void setUp() {
         System.setProperty("webdriver.chrome.driver",
-                "./src/test/resources/drivers/chromedriver");
+                "./src/test/resources/drivers/chromedriver.exe");
         driver = new ChromeDriver();
     }
 
