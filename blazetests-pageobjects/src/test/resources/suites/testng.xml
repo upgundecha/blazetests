@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Blaze Regression Tests" verbose="1">
+    <listeners>
+        <listener class-name="com.vimalselvam.testng.listener.ExtentTestNgFormatter"/>
+    </listeners>
+    <test name="Register User Test">
+        <classes>
+            <class name="com.example.test.RegisterANewUser"/>
+        </classes>
+    </test>
+    <test name="Login">
+        <classes>
+            <class name="com.example.test.LoginTests"/>
+        </classes>
+    </test>
+    <test name="BookAFlight">
+        <classes>
+            <class name="com.example.test.BookingTests"/>
+        </classes>
+    </test>
+</suite>
