@@ -96,21 +96,19 @@ public class WebTable {
                 parent.findElements(By.cssSelector("tbody tr"));
 
         int r = 0;
+        
         for(WebElement row : rows) {
-
             List<WebElement> cols =
                     row.findElements(By.cssSelector("td"));
-
+            
             int c = 0;
-
+            
             for(WebElement col : cols) {
-
                 data[r][c] = col.getText();
                 c++;
             }
             r++;
         }
-
         return data;
     }
 
