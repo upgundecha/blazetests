@@ -150,3 +150,22 @@ public class WebTable {
     }
 }
 ```
+
+### Google Example
+
+```
+@Test
+    public void googleSignUp() throws InterruptedException {
+        driver = getDriver();
+
+        driver.get("https://accounts.google.com/SignUp?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ltmpl=default");
+        selectMonthByIndex(8);
+        Thread.sleep(10000);
+    }
+
+    public void selectMonthByIndex(int index) {
+        driver.findElement(By.cssSelector("span#BirthMonth div.goog-flat-menu-button-dropdown")).click();
+        //driver.findElement(By.cssSelector("span#BirthMonth div.goog-menuitem:nth-of-type(" + index + ")")).click();
+        driver.findElement(By.xpath("//span[@id='BirthMonth']//div[@class='goog-menuitem'][" + index + "]")).click();
+    }
+```
