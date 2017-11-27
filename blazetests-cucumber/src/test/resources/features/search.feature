@@ -1,15 +1,15 @@
-Feature: Flight Booking
+Feature: Search Flights
 
-  Scenario: Flight Options
+  Scenario: Search Flights
     Given user is on Home page
-    When he finds flight:
+    When he search flight:
       | from | Boston |
       | to   | London |
     Then he should see the flight options
 
   Scenario: Flight Details
     Given user is on Home page
-    When he finds flight:
+    When he search flight:
       | from | Boston |
       | to   | London |
     Then he should see the flight options

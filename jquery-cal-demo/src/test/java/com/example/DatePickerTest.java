@@ -9,7 +9,7 @@ public class DatePickerTest extends BaseTest {
     WebDriver driver;
 
     @Test
-    public void shouldLogin() throws Exception {
+    public void datePickerTest() throws Exception {
 
         driver = getDriver();
         driver.get("https://jqueryui.com/resources/demos/datepicker/default.html");

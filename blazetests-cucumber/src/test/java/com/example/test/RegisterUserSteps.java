@@ -29,8 +29,8 @@ public class RegisterUserSteps {
         driver.get("http://www.blazedemo.com/register");
     }
 
-    @When("^submits the registration form with all the fields$")
-    public void submits_the_registration_form_with_all_the_fields() throws Throwable {
+    @When("^he submits the registration form$")
+    public void submits_the_registration_form() throws Throwable {
         registerPage = new RegisterPage(driver);
         dashboardPage = registerPage.registerUser(name, company,
                 email, "p@ssword");

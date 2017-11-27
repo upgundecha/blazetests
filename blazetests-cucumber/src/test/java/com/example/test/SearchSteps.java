@@ -25,7 +25,7 @@ public class BookingSteps {
        driver.get("http://www.blazedemo.com/");
     }
 
-    @When("^he finds flight:$")
+    @When("^he search flight:$")
     public void he_finds_flight(Map<String, String> selection) throws Throwable {
         flightOptionsPage = new HomePage(driver)
                 .findFlights(selection.get("from"), selection.get("to"));

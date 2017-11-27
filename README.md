@@ -6,41 +6,7 @@
 * The Internet Application - http://the-internet.herokuapp.com/
 * Selenium Tips Code - https://github.com/tourdedave/elemental-selenium-tips
 
-
-### JavaScriptExecutor
-
-```
-public static void highlightElement(WebElement element) throws Exception {
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-
-        for (int i = 0; i < 5; i++) {
-            jsExecutor.executeScript(
-                    "arguments[0].setAttribute('style', arguments[1]);",
-                    element, "color: green; border: 2px solid green;");
-            Thread.sleep(100);
-            jsExecutor.executeScript(
-                    "arguments[0].setAttribute('style', arguments[1]);",
-                    element, "");
-        }
-    }
-
-    public static void accessibilityScan() throws Exception {
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-
-        URL url = new URL("https://raw.githubusercontent.com/GoogleChrome/" + 
-                "accessibility-developer-tools/stable/dist/js/axs_testing.js");
-        InputStream is = url.openStream();
-
-        String script = IOUtils.toString(is, StandardCharsets.UTF_8);
-        jsExecutor.executeScript(script);
-        String report = 
-                (String) jsExecutor.executeScript("var results = axs.Audit.run();return axs.Audit.createReport(results);");
-        System.out.println(report);
-    }
-```
-
 ### TestNG CSV Data Provider
-
 
 ```
 @DataProvider(name = "options")
@@ -64,6 +30,38 @@ public Iterator<Object[]> provider() throws Exception {
 
 ```
 
+### JavaScriptExecutor Examples
+
+```
+public static void highlightElement(WebElement element) {
+    JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
+    for (int i = 0; i < 5; i++) {
+        jsExecutor.executeScript(
+                "arguments[0].setAttribute('style', arguments[1]);",
+                element, "color: green; border: 2px solid green;");
+        jsExecutor.executeScript(
+                "arguments[0].setAttribute('style', arguments[1]);",
+                element, "");
+    }
+}
+
+public static void accessibilityScan() throws Exception {
+    JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
+    URL url = new URL("https://raw.githubusercontent.com/GoogleChrome/" + 
+            "accessibility-developer-tools/stable/dist/js/axs_testing.js");
+    InputStream is = url.openStream();
+
+    String script = IOUtils.toString(is, StandardCharsets.UTF_8);
+    jsExecutor.executeScript(script);
+    String report = 
+            (String) jsExecutor.executeScript("var results = axs.Audit.run();return axs.Audit.createReport(results);");
+    System.out.println(report);
+}
+
+```
+
 ### Setting Selenium Grid
 
 #### Hub
@@ -78,7 +76,6 @@ java -jar selenium-server-standalone-3.7.1.jar -role hub
 java -Dwebdriver.chrome.driver="chromedriver.exe" -jar selenium-server-standalone-3.7.1.jar -role webdriver -browser "browserName=chrome,maxinstance=2,platform=WINDOWS" -hubHost localhost -port 7777
 
 ```
-
 
 ### Web Table Class
 ```
@@ -151,21 +148,20 @@ public class WebTable {
 }
 ```
 
-### Google Example
+### Google Signup Month Selector Example
 
 ```
 @Test
-    public void googleSignUp() throws InterruptedException {
-        driver = getDriver();
+public void googleSignUp()  {
+    driver = getDriver();
 
-        driver.get("https://accounts.google.com/SignUp?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ltmpl=default");
-        selectMonthByIndex(8);
-        Thread.sleep(10000);
-    }
+    driver.get("https://accounts.google.com/SignUp?service=mail&continue=https%3A%2F%2Fmail.google.com%2Fmail%2F&ltmpl=default");
+    selectMonthByIndex(8);
+}
 
-    public void selectMonthByIndex(int index) {
-        driver.findElement(By.cssSelector("span#BirthMonth div.goog-flat-menu-button-dropdown")).click();
-        //driver.findElement(By.cssSelector("span#BirthMonth div.goog-menuitem:nth-of-type(" + index + ")")).click();
-        driver.findElement(By.xpath("//span[@id='BirthMonth']//div[@class='goog-menuitem'][" + index + "]")).click();
-    }
+public void selectMonthByIndex(int index) {
+    driver.findElement(By.cssSelector("span#BirthMonth div.goog-flat-menu-button-dropdown")).click();
+    //driver.findElement(By.cssSelector("span#BirthMonth div.goog-menuitem:nth-of-type(" + index + ")")).click();
+    driver.findElement(By.xpath("//span[@id='BirthMonth']//div[@class='goog-menuitem'][" + index + "]")).click();
+}
 ```
