@@ -7,6 +7,38 @@
 * Selenium Tips Code - https://github.com/tourdedave/elemental-selenium-tips
 
 
+### JavaScriptExecutor
+
+```
+public static void highlightElement(WebElement element) throws Exception {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
+        for (int i = 0; i < 5; i++) {
+            jsExecutor.executeScript(
+                    "arguments[0].setAttribute('style', arguments[1]);",
+                    element, "color: green; border: 2px solid green;");
+            Thread.sleep(100);
+            jsExecutor.executeScript(
+                    "arguments[0].setAttribute('style', arguments[1]);",
+                    element, "");
+        }
+    }
+
+    public static void accessibilityScan() throws Exception {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
+        URL url = new URL("https://raw.githubusercontent.com/GoogleChrome/" + 
+                "accessibility-developer-tools/stable/dist/js/axs_testing.js");
+        InputStream is = url.openStream();
+
+        String script = IOUtils.toString(is, StandardCharsets.UTF_8);
+        jsExecutor.executeScript(script);
+        String report = 
+                (String) jsExecutor.executeScript("var results = axs.Audit.run();return axs.Audit.createReport(results);");
+        System.out.println(report);
+    }
+```
+
 ### TestNG CSV Data Provider
 
 
