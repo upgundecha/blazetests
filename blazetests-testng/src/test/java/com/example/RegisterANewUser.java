@@ -17,18 +17,20 @@ public class RegisterANewUser extends BaseTest {
         driver = getDriver();
         faker = new Faker();
 
-        driver.get("http://www.blazedemo.com/register");
-
         String name = faker.name().fullName();
+        String company = faker.company().name();
+        String email = faker.internet().emailAddress();
+
+        driver.get("http://www.blazedemo.com/register");
 
         driver.findElement(By.id("name"))
                 .sendKeys(name);
 
         driver.findElement(By.id("company"))
-                .sendKeys("Test Company");
+                .sendKeys(company);
 
         driver.findElement(By.id("email"))
-                .sendKeys(faker.internet().emailAddress());
+                .sendKeys(email);
 
         driver.findElement(By.id("password"))
                 .sendKeys("p@assword");

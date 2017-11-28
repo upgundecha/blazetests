@@ -2,7 +2,6 @@ package com.example.test;
 
 import com.example.pages.DashboardPage;
 import com.example.pages.RegisterPage;
-import com.example.test.BaseTest;
 import com.github.javafaker.Faker;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
@@ -17,8 +16,8 @@ public class RegisterANewUser extends BaseTest {
     public void shouldRegisterAUser() {
 
         driver = getDriver();
-        faker = new Faker();
 
+        faker = new Faker();
         String name = faker.name().fullName();
         String company = faker.company().name();
         String email = faker.internet().emailAddress();
